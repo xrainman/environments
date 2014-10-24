@@ -1,5 +1,7 @@
 <?php
 
+namespace Zaraguza\Environments;
+
 class Environments {
     
     protected $default;
