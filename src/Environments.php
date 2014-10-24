@@ -90,7 +90,7 @@ class Environments {
         }
         
         // oh, no matching environment found
-        throw new Exception('No matching environment found.');
+        throw new \Exception('No matching environment found.');
         
     }
     
