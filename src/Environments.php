@@ -1,6 +1,6 @@
 <?php
 
-namespace Zaraguza\Environments;
+namespace PavolEichler\Environments;
 
 class Environments {
     
