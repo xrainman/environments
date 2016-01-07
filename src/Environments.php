@@ -5,6 +5,7 @@ namespace PavolEichler\Environments;
 class Environments {
     
     protected $default;
+    protected $requireEnvironment;
     protected $environments;
     
     const ANY = '@@*';
@@ -22,9 +23,10 @@ class Environments {
      * 
      * @param array $default Default values.
      */
-    public function __construct($default) {
+    public function __construct($default, $requireEnvironment = true) {
         
         $this->default = $default;
+        $this->requireEnvironment = $requireEnvironment;
         
     }
     
@@ -90,7 +92,11 @@ class Environments {
         }
         
         // oh, no matching environment found
-        throw new \Exception('No matching environment found.');
+        if ($this->requireEnvironment){
+            throw new \Exception('No matching environment found.');
+        }else{
+            return (object) $this->default;
+        }
         
     }
     
