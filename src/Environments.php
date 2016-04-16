@@ -10,6 +10,7 @@ class Environments {
     
     const ANY = '@@*';
     
+    const CLI_LAST_ARG = 'cla';
     const HOSTNAME = 'hn';
     const HTTP_HOST = 'hh';
     const PATH = 'hp';
@@ -61,6 +62,11 @@ class Environments {
         foreach ($this->environments as $environment){
             // get identity definition
             $identity = $environment[self::ENVIRONMENT_IDENTITY];
+            
+            // match last CLI argument
+            if (key_exists(self::CLI_LAST_ARG, $identity) AND (php_sapi_name() !== 'cli' OR $identity[self::CLI_LAST_ARG] !== end($_SERVER['argv']))){
+                continue;
+            }
             
             // match hostnames
             if (key_exists(self::HOSTNAME, $identity) AND $identity[self::HOSTNAME] !== \gethostname())
