@@ -73,7 +73,7 @@ class Environments {
                 continue;
             
             // match http hosts
-            if (key_exists(self::HTTP_HOST, $identity) AND $identity[self::HTTP_HOST] !== $_SERVER['HTTP_HOST'])
+            if (key_exists(self::HTTP_HOST, $identity) AND (!isset($_SERVER['HTTP_HOST']) OR $identity[self::HTTP_HOST] !== $_SERVER['HTTP_HOST']))
                 continue;
             
             // match paths
