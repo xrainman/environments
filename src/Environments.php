@@ -43,10 +43,24 @@ class Environments {
      */
     public function setEnvironment($identity, $properties) {
         
+        $merged = $properties + ['id' => $this->createIdentifier($identity)] + $this->default;
+        
         $this->environments[] = array(
             self::ENVIRONMENT_IDENTITY => ($identity === self::ANY) ? array() : $identity,
-            self::ENVIRONMENT_PROPERTIES => (object) array_merge($this->default, $properties)
+            self::ENVIRONMENT_PROPERTIES => (object) $merged
         );
+        
+    }
+    
+    /**
+     * Creates a unique identifier for this environment.
+     * 
+     * @param array $identity
+     * @return string
+     */
+    protected function createIdentifier($identity) {
+        
+        return md5(json_encode($identity));
         
     }
     
