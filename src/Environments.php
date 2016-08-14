@@ -60,7 +60,7 @@ class Environments {
      */
     protected function createIdentifier($identity) {
         
-        return md5(json_encode($identity));
+        return hash('crc32', serialize($identity));
         
     }
     
