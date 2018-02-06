@@ -5,7 +5,7 @@ namespace PavolEichler\Environments;
 class Environments {
     
     protected $default;
-    protected $requireEnvironment;
+    public $requireEnvironment;
     protected $environments;
     
     const ANY = '@@*';
